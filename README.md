@@ -8,11 +8,16 @@ This is the original NAV_LIST_UL of flip-flop that was incorporated by OG and no
 --> easily add the number of articles within a certain site structure level.
 
 The script works exactly like NAV_LIST_UL.
+
 Basics to read --> http://forum.phpwcms.org/viewtopic.php?t=12165
+
 You can use it with the same prominent parameters and features as usual.
 Read also <http://phpwcms.org> and Knut's (aka flip-flop's) [HowTo Wiki]:
+
 http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
+
 http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
+
 and: ==> RTFM: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
 
 Quick start
