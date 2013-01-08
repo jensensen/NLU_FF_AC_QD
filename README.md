@@ -11,10 +11,15 @@ The script works exactly like NAV_LIST_UL: basic to read --> http://forum.phpwcm
 
 You can use it with the same prominent parameters and features as usual.
 
-Read also <http://phpwcms.org> and 
-Knut's (aka flip-flop's) [HowTo Wiki](http://www.phpwcms-howto.de/wiki/) and:
+Read also <http://phpwcms.org> and
 
-==> RTFM: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
+Knut's (aka flip-flop's) [HowTo Wiki]:
+
+http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
+http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
+
+
+and: ==> RTFM: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
 
 
 
@@ -55,7 +60,7 @@ Copyright and license
 
 Copyright 2008–2013 jensensen
 
-This work - NLU_FF_AC_QD for phpwcms by jensensen (jbr/LH/DE) - is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+This work - 'NLU_FF_AC_QD' for phpwcms by jensensen (jbr/LH/DE) - is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 
    <http://creativecommons.org/licenses/by-sa/3.0/deed.en_US>
 
