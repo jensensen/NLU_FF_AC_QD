@@ -1,5 +1,6 @@
 NLU_FF_AC_QD
 ============
+v1.5
 
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
 
@@ -28,6 +29,7 @@ Bug tracker
 -----------
 
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
+
 <https://github.com/jensensen/NLU_FF_AC_QD/issues>
 
 Share with us
