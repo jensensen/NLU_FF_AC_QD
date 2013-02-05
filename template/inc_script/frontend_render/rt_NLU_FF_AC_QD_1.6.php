@@ -1,7 +1,7 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD for phpwcms --> v1.4.5+
-* Date: Jan. 21, 2010
+* NLU_FF_AC_QD for phpwcms --> r460 v1.5x+ (of 2012/04/07)
+* Date: Feb. 05, 2013
 *
 * SUMMARY:
 * Works like NAV_LIST_UL but displays the number of articles
@@ -21,11 +21,11 @@
 * TAG:			{NLU_FF_AC_QD:F,0....}
 *				Use it in your templates, CPs or elsewhere.
 *
-* VERSION:		1.4
+* VERSION:		1.6
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENCE:		∀ |&#8704;| &forall;
 *
-* LOCATION:		/template/inc_script/frontend_render/rt_NLU_FF_AC_QD_1.4.php
+* LOCATION:		/template/inc_script/frontend_render/rt_NLU_FF_AC_QD_1.6.php
 * REQUIREMENT:	$phpwcms['allow_ext_render']  = 1; //SEE: conf.inc.php
 *
 * NAV_LIST_UL basics: http://forum.phpwcms.org/viewtopic.php?t=12165
@@ -49,9 +49,17 @@ $acw_after = ")</span>";
 // original funtion buildCascadingMenu in /include/inc_front/front.func.inc.php
 function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') {
 
-	// @string $parameter = "menu_type, start_id, max_level_depth, class_path, class_active,
-	// ul_id_name, wrap_ul_div(0 = off, 1 = <div>, 2 = <div id="">, 3 = <div class="navLevel-0">),
-	// wrap_link_text(<em>|</em>, articlemenu_start_level)"
+	/*
+		@string $parameter:
+			menu_type,
+			start_id,
+			max_level_depth,
+			class_path|ul_class_level1|ul_class_level2|...,
+			class_active_li|class_active_a,
+			ul_id_name,
+			wrap_ul_div(0 = off, 1 = <div>, 2 = <div id="">, 3 = <div class="navLevel-0">),
+			wrap_link_text(<em>|</em>, articlemenu_start_level)
+	*/
 
 	if($param == 'string') {
 
@@ -65,6 +73,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$articlemenu	= false; // do not show category's article titles as menu entry
 
 		switch($menu_type) {
+			
+			case 'A':		$articlemenu	= true;
+							break;
 
 							// show parent level too
 			case 'PA':		$articlemenu	= true;
@@ -99,6 +110,21 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$active_class	= empty($parameter[4]) ? '' : trim($parameter[4]);
 		$level_id_name	= empty($parameter[5]) ? '' : trim($parameter[5]);
 		$wrap_ul_div	= empty($parameter[6]) ? 0  : intval($parameter[6]);
+		if($path_class) {
+			$path_class = explode('|', $path_class);
+			foreach($path_class as $key => $class_name) {
+				$path_class[$key] = trim($class_name);
+			}
+		} else {
+			$path_class = array(0 => '');
+		}		
+		if($active_class) {
+			$active_class		= explode('|', $active_class, 2);
+			$active_class[0]	= trim($active_class[0]);
+			$active_class[1]	= empty($active_class[1]) ? '' : trim($active_class[1]);
+		} else {
+			$active_class		= array(0 => '', 1 => '');
+		}
 		if($wrap_ul_div > 3) {
 			$wrap_ul_div = 2;
 		} elseif($wrap_ul_div < 0) {
@@ -153,16 +179,28 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 	}
 
 	$li				= '';
+	$ali			= '';
 	$ul				= '';
 	$TAB			= str_repeat('	', $counter);
 	$_menu_type		= strtolower($menu_type);
 	$max_depth		= ($max_depth == 0 || $max_depth-1 > $counter) ? true : false;
 	$x				= 0;
-
+	$items			= array();
+	$last_item		= 0;
+	
 	foreach($GLOBALS['content']['struct'] as $key => $value) {
 
+		if( _getStructureLevelDisplayStatus($key, $start_id) ) {
+			$items[$key] = $key;
+			$last_item++;
+		}
+
+	}
+
+	foreach($items as $key) {
+
 // -------------------------------------- WORKING -----------------
-		// thank you OG
+		// overfucked massive changes
 		// count number of articles in each category level
 		$sql = "SELECT COUNT(*) ";
 		$sql .= "FROM ".DB_PREPEND."phpwcms_article ";
@@ -174,14 +212,12 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		// thank you flip-flop
 		$how_many_articles = _dbCount($sql);
 
-		if( _getStructureLevelDisplayStatus($key, $start_id) ) {
-
 			$li_ul 		= '';
-			$li_class	= '';
 			$li_ie		= '';
 			$li_a_title	= html_specialchars($GLOBALS['content']['struct'][$key]['acat_name']);
+			$li_a_class	= ($active_class[1] && $key == $GLOBALS['aktion'][0]) ? ' class="'.$active_class[1].'"' : ''; // set active link class
 			
-			$li_a  = get_level_ahref($key, ' title="'.$li_a_title.'"');
+			$li_a  = get_level_ahref($key, $li_a_class.' title="'.$li_a_title.'"');
 			$li_a .= $wrap_link_text[0] . $li_a_title . $wrap_link_text[1];
 
 			if($max_depth && ($unfold == 'all' || ($unfold == 'active_path' && isset($GLOBALS['LEVEL_KEY'][$key]))) ) {
@@ -195,41 +231,48 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			if($level_id_name) {
 				$li .= ' id="li_'.$level_id_name.'_'.$key.'"';
 			}
-			if($li_ul) {
-				$li_class	= 'sub_ul';
-			} else {
-				$li_class	= getHasSubStructureStatus($key) ? 'sub_no sub_ul_true' : 'sub_no';
+			$li_class = ($li_ul) ? 'sub_ul' : (getHasSubStructureStatus($key) ? 'sub_no sub_ul_true' : 'sub_no');
+			if($path_class[0] && isset($GLOBALS['LEVEL_KEY'][$key])) {
+				$li_class = trim($li_class.' '.$path_class[0]);
 			}
-			if($path_class != '' && isset($GLOBALS['LEVEL_KEY'][$key])) {
-				$li_class .= ' '.$path_class;
-				$li_class  = trim($li_class);
+			if($active_class[0] != '' && $key == $GLOBALS['aktion'][0]) {
+				$li_class = trim($li_class.' '.$active_class[0]);
 			}
-			if($active_class != '' && $key == $GLOBALS['aktion'][0]) {
-				$li_class = trim($li_class.' '.$active_class);
+			if($x==0) {
+				$li_class .= ' sub_first';
+			}
+			
+			$x++;
+			
+			if($x==$last_item) {
+				$li_class .= ' sub_last';
 			}
 
-			$li .= ' class="' . $li_class . ( $x==0 ? ' sub_first' : '' ) .'"';
+			$li .= ' class="' . trim($li_class . ' ' . $GLOBALS['content']['struct'][$key]['acat_class']) .'"';
 
 //			$li .= '>' . $li_a . '</a>';
 			$li .= '>' . $li_a . $GLOBALS['acw_before'] . $how_many_articles . $GLOBALS['acw_after'] . '</a>'; // jensensen
 
 			$li .= $li_ul.'</li>'.LF; // remove $li_ul from this line of code if $ie_patch is used
-			
-			$x++;
-		}
-	}
 
+	}
+	
 	// show article menu
 	if($parameter[12]['articlemenu'] && $amenu_level <= $counter) {
 		
 		$parameter[12]['level_id']		= $start_id;
-		$parameter[12]['item_prefix']	= $TAB;
+		$parameter[12]['item_prefix']	= $TAB.$TAB.$TAB;
 
 		$ali = getArticleMenu( $parameter[12] );
 		
 		if(count($ali) > 1) {
 		
 			$li .= implode(LF, $ali) . LF;
+			$ali = $TAB;
+			
+		} else {
+		
+			$ali = '';
 			
 		}
 		
@@ -251,12 +294,18 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			default:	$ul = '';
 						$close_wrap_ul = '';
 		}
-		$ul .= LF.$TAB.'<ul';
+		$ul .= LF . $TAB . $ali . '<ul';
 		if($level_id_name) {
 			$ul .= ' id="'.$level_id_name.'_'.$start_id.'"';
 		}
-		if(isset($GLOBALS['LEVEL_KEY'][$start_id]) && $path_class) {
-			$ul .= ' class="'.$path_class.'"';
+
+		$ul_class = empty($path_class[$counter+1]) ? '' : $path_class[$counter+1];
+		if(isset($GLOBALS['LEVEL_KEY'][$start_id]) && $counter && isset($path_class[0])) {
+			$ul_class .= ' ' . $path_class[0];
+		}
+		$ul_class = trim($ul_class);
+		if($ul_class) {
+			$ul .= ' class="' . $ul_class . '"';
 		}
 		$ul .= '>'.LF;
 		
@@ -267,26 +316,23 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			if($level_id_name) {
 				$ul .= ' id="li_'.$level_id_name.'_'.$start_id.'"';
 			}
-			$li_class	= 'sub_parent';
-			if($path_class != '' && isset($GLOBALS['LEVEL_KEY'][$start_id])) {
-				$li_class .= ' '.$path_class;
-				$li_class  = trim($li_class);
+			$li_class = 'sub_parent';
+			if($active_class[0] != '' && $start_id == $GLOBALS['aktion'][0]) {
+				$li_class = trim($li_class.' '.$active_class[0]);
 			}
-			if($active_class != '' && $start_id == $GLOBALS['aktion'][0]) {
-				$li_class = trim($li_class.' '.$active_class);
-			}
-			$ul .= ' class="'.$li_class.'">';
+			$ul .= ' class="'.trim($li_class.' '.$GLOBALS['content']['struct'][$start_id]['acat_class']).'">';
 			
-			$link_text = html_specialchars($GLOBALS['content']['struct'][$start_id]['acat_name']);
+			$link_text	= html_specialchars($GLOBALS['content']['struct'][$start_id]['acat_name']);
+			$link_class	= ($active_class[1] && $start_id == $GLOBALS['aktion'][0]) ? ' class="'.$active_class[1].'"' : ''; // set active link class
 			
-			$ul .= get_level_ahref($start_id, ' title="'.$link_text.'"');
+			$ul .= get_level_ahref($start_id, $link_class.' title="'.$link_text.'"');
 			$ul .= $wrap_link_text[0] . $link_text . $wrap_link_text[1];
 			$ul .= '</a></li>'.LF;
 					
 		}
 		
 		$ul .= $li;
-		$ul .= $TAB . '</ul>' . LF . $TAB . $close_wrap_ul;
+		$ul .= $TAB . $ali . '</ul>' . LF . $TAB . $close_wrap_ul;
 
 		if($create_css && empty($GLOBALS['block']['custom_htmlhead'][$menu_type][$counter])) {
 
