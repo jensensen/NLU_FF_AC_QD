@@ -21,6 +21,8 @@ http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_
 
 and: ==> RTFM: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
 
+and also: ==> https://github.com/slackero/phpwcms/issues/13
+
 Quick start
 -----------
 Clone the repo, `https://github.com/jensensen/NLU_FF_AC_QD.git`.
