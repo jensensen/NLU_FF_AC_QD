@@ -1,6 +1,6 @@
 NLU_FF_AC_QD
 ============
-v1.6
+v1.7
 
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
 
@@ -21,7 +21,13 @@ http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_
 
 and: ==> RTFM: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
 
-and also: ==> https://github.com/slackero/phpwcms/issues/13
+and read also: ==> https://github.com/slackero/phpwcms/issues/13
+
+New in v1.7
+-----------
+READ:
+==> http://forum.phpwcms.org/viewtopic.php?f=1&t=24328
+==> https://github.com/slackero/phpwcms/commit/1eba9679db7714bd9189ad76fad9a4e29f304124
 
 Quick start
 -----------
@@ -51,7 +57,7 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2013 jensensen
+Copyright 2008–2014 jensensen
 
 This work - 'NLU_FF_AC_QD' for phpwcms by jensensen (jbr/LH/DE) - is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 
