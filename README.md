@@ -58,9 +58,11 @@ Copyright and license
 
 Copyright 2008–2014 jensensen
 
-This work - 'NLU_FF_AC_QD' for phpwcms by jensensen (jbr/LH/DE) - is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](creativecommons.org/licenses/by-sa/4.0/) License. ![License:CC BY-SA 4.0][http://i.creativecommons.org/l/by-sa/4.0/88x31.png]
+This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](creativecommons.org/licenses/by-sa/4.0/) License.
 
-This program is free software; you can redistribute it and/or
+![License:CC BY-SA 4.0](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
+
+This program is free software. You can redistribute it and/or
 modify it under the terms of the CC License as published and as long as others share alike.
 
 This program is distributed in the hope that it will be useful,
