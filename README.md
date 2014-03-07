@@ -27,7 +27,7 @@ and:
 ==> https://github.com/slackero/phpwcms/issues/13
 
 ##New in v1.7##
-The original NAV_LIST_UL was changed by OG's phpwcms. Now classes used by **bootstrap** were added:
+The original NAV_LIST_UL was changed by OG's phpwcms. Now classes used by **bootstrap** were added, e.g.:
 
 ```
 {NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
@@ -62,11 +62,9 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2014 jensensen
+Copyright 2008–2014 jensensen ![License:CC BY-SA 4.0](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
 This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/) License.
-
-![License:CC BY-SA 4.0](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
 This program is free software. You can redistribute it and/or
 modify it under the terms of the CC License as published and as long as others share alike.
