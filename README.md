@@ -11,10 +11,10 @@ The script works exactly like the original **NAV_LIST_UL**, because it's based o
 **Basics** to read --> http://forum.phpwcms.org/viewtopic.php?t=12165
 
 ####For those who are interested why I chose this name:####
-*NLU = NAV_LIST_UL
-*FF = flip-flop
-*AC = article count
-*QD = quick and dirty
+* NLU = NAV_LIST_UL
+* FF = flip-flop
+* AC = article count
+* QD = quick and dirty
 
 You can use it as RT = replacement tag  with the same prominent parameters and features as usual, but instead NAV_LIST_UL just type: NLU_FF_AC_QD... Read also <http://phpwcms.org> and Knut's (aka flip-flop's) [HowTo Wiki]:
 
