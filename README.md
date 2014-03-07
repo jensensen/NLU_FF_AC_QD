@@ -1,31 +1,38 @@
 #NLU_FF_AC_QD#
 v1.7
 
+##Description:##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
 
-This is the quick and dirty solution!
-This is the original **NAV_LIST_UL** of *flip-flop* that was incorporated by OG and now has been extended with
---> easily add the number of articles within a certain site structure level.
+This is the quick and dirty solution! This is the original **NAV_LIST_UL** of *flip-flop* that was incorporated by OG and now has been extended with --> easily add the number of articles within a certain site structure level.
 
-The script works exactly like **NAV_LIST_UL**.
+The script works exactly like the original **NAV_LIST_UL**, because it's based on the same function.
 
 **Basics** to read --> http://forum.phpwcms.org/viewtopic.php?t=12165
 
-You can use it with the same prominent parameters and features as usual.
-Read also <http://phpwcms.org> and Knut's (aka flip-flop's) [HowTo Wiki]:
+####For those who are interested why I chose this name:####
+*NLU = NAV_LIST_UL
+*FF = flip-flop
+*AC = article count
+*QD = quick and dirty
+
+You can use it as RT = replacement tag  with the same prominent parameters and features as usual, but instead NAV_LIST_UL just type: NLU_FF_AC_QD... Read also <http://phpwcms.org> and Knut's (aka flip-flop's) [HowTo Wiki]:
 
 * ==> http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
-
 * ==> http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
 
 and:
 
-==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
-
-and read also: ==> https://github.com/slackero/phpwcms/issues/13
+==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
+==> https://github.com/slackero/phpwcms/issues/13
 
 ##New in v1.7##
-The original NAV_LIST_UL was changed by OG's phpwcms. So this script needs an update:
+The original NAV_LIST_UL was changed by OG's phpwcms. Now classes used by **bootstrap** were added:
+
+```
+{NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
+```
+So this script needs an update:
 
 * ==> http://forum.phpwcms.org/viewtopic.php?f=1&t=24328
 * ==> https://github.com/slackero/phpwcms/commit/1eba9679db7714bd9189ad76fad9a4e29f304124
@@ -48,10 +55,9 @@ Author
 ------
 
 ### jensensen ###
-
-+ <http://forum.phpwcms.org/viewtopic.php?f=8&t=17891>
-+ <http://github.com/jensensen/>
-+ <https://www.facebook.com/jens.bruckner.98>
+* <http://forum.phpwcms.org/viewtopic.php?f=8&t=17891>
+* <http://github.com/jensensen/>
+* <https://www.facebook.com/jens.bruckner.98>
 
 Copyright and license
 ---------------------
