@@ -1,5 +1,5 @@
 #NLU_FF_AC_QD#
-v1.7
+v1.8
 
 ##Description:##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,16 +26,17 @@ and:
 ==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
 ==> https://github.com/slackero/phpwcms/issues/13
 
-##New in v1.7##
-The original NAV_LIST_UL was changed by OG's phpwcms. Now classes used by **bootstrap** were added, e.g.:
+##New in v1.8##
+The original NAV_LIST_UL has been changed by OG.
 
 ```
 {NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
+{NAV_LIST_UL:BA,0,,,active,,,,0|100x100x1|teaser:10|outside|<div class="dropdown-menu">[IMAGE]<img src="[%IMAGE%]" alt="[%IMAGE_NAME%]" class="dropdown-image" />[/IMAGE][TEXT]<div class="dropdown-text">[%TEXT%]</div>[/TEXT]</div>}
 ```
 So this script needs an update:
 
 * ==> http://forum.phpwcms.org/viewtopic.php?f=1&t=24328
-* ==> https://github.com/slackero/phpwcms/commit/1eba9679db7714bd9189ad76fad9a4e29f304124
+* ==> https://github.com/slackero/phpwcms/commit/e8b39f83ce103a63b54b9b660a6574cc1dbfbebe
 
 ###Quick start###
 Clone the repo: `https://github.com/jensensen/NLU_FF_AC_QD.git`.
@@ -62,9 +63,11 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2014 jensensen ![License:CC BY-SA 4.0](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
+Copyright 2008–2014 jensensen
 
-This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/) License.
+This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is licensed under a 
+
+[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](http://creativecommons.org/licenses/by-sa/4.0/) License. ![License:CC BY-SA 4.0](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
 This program is free software. You can redistribute it and/or
 modify it under the terms of the CC License as published and as long as others share alike.

@@ -1,18 +1,22 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD for phpwcms --> r537 v1.7.2+ (of 2014/02/24)
+* NLU_FF_AC_QD -> v1.8 of June 11, 2014
+* for phpwcms --> v1.7.3+ (release date: 2014/05/29)
+* #################################################################
+* CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
+* LICENCE:		∀ |&#8704;| &forall;
 * #################################################################
 * SUMMARY:
 * Works like NAV_LIST_UL but displays the number of articles
 * --> of each site level. Example ==> Products (17)
 * #################################################################
-* AUTHOR [virt.]:	Jensensen
-*		 [real]:	INSPIRED by Knut Heermann aka flip-flop
+* AUTHOR [virt.]:	Jensensen, INSPIRED by 
+*		 [real]:	Knut Heermann aka flip-flop
 *		 [real]:	FUNCTION by Oliver Georgi
 * #################################################################
 * ### README: github
 * https://github.com/jensensen/NLU_FF_AC_QD/blob/master/README.md
-* https://github.com/slackero/phpwcms/commit/1eba9679db7714bd9189ad76fad9a4e29f304124
+* https://github.com/slackero/phpwcms/commit/e8b39f83ce103a63b54b9b660a6574cc1dbfbebe
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
@@ -21,11 +25,6 @@
 * http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
 * ###
 * NAV_LIST_UL basics: http://forum.phpwcms.org/viewtopic.php?t=12165
-* #################################################################
-* DATE:			Mar. 01, 2014
-* VERSION:		1.7
-* CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
-* LICENCE:		∀ |&#8704;| &forall;
 * #################################################################
 * TAG:			{NLU_FF_AC_QD:F,0....}
 *				Use it in your templates, CPs or elsewhere.
@@ -60,12 +59,16 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			class_active_li|class_active_a,
 			ul_id_name,
 			wrap_ul_div(0 = off, 1 = <div>, 2 = <div id="">, 3 = <div class="navLevel-0">),
-			wrap_link_text(<em>|</em>, articlemenu_start_level)
+			wrap_link_text(<em>|</em>),
+			articlemenu_start_level|articlemenu_list_image_size (WxHxCROP OR WxHxCROP)|_
+				articlemenu_use_text (take text from: description:MAXLEN OR menutitle:MAXLEN OR teaser:MAXLEN OR teaser:HTML)|_
+				articlemenu_position (inside|outside)|_
+				<custom>[TEXT]{TEXT}[/TEXT][IMAGE]<img src="{IMAGE}" alt="{IMAGE_NAME}">[/IMAGE]</custom>
 	*/
 
 	if($param == 'string') {
 
-		$parameter 		= explode(',', $parameter);
+		$parameter 		= explode(',', is_array($parameter) && isset($parameter[1]) ? $parameter[1] : $parameter);
 		$menu_type		= empty($parameter[0]) ? '' : strtoupper(trim($parameter[0]));
 
 		$unfold 		= 'all';
@@ -74,7 +77,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$parent			= false; // do not show parent link
 		$articlemenu	= false; // do not show category's article titles as menu entry
 		$bootstrap		= false; // bootstrap dropdown style
-		
+
 		/**
 		 * P = Show parent level
 		 * B = Bootstrap compatible rendering
@@ -84,10 +87,10 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		 * VCSS = Sample vertical CSS based menu
 		 **/
 		switch($menu_type) {
-			
+
 			case 'B':		$bootstrap		= true;
 							break;
-			
+
 			case 'BA':		$bootstrap		= true;
 			case 'A':		$articlemenu	= true;
 							break;
@@ -126,6 +129,17 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$active_class	= empty($parameter[4]) ? '' : trim($parameter[4]);
 		$level_id_name	= empty($parameter[5]) ? '' : trim($parameter[5]);
 		$wrap_ul_div	= empty($parameter[6]) ? 0  : intval($parameter[6]);
+		$amenu_options	= array(
+			'enable'		=> false,
+			'image'			=> false,
+			'text'			=> false,
+			'width'			=> 0,
+			'height'		=> 0,
+			'crop'			=> 0,
+			'textlength'	=> 0,
+			'position'		=> 'outside',
+			'template'		=> '<span class="amenu-extended">[IMAGE]<img src="[%IMAGE%]" alt="[%IMAGE_NAME%]" />[/IMAGE][TEXT]<span class="p">[%TEXT%]</span>[/TEXT]</span>'
+		);
 		if($path_class) {
 			$path_class = explode('|', $path_class);
 			foreach($path_class as $key => $class_name) {
@@ -150,15 +164,61 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		if(empty($wrap_link_text[1])) {
 			$wrap_link_text[1] = '';
 		}
-		$amenu_level	= empty($parameter[8]) ? 0 : intval($parameter[8]);
+		if(empty($parameter[8])) {
+			$amenu_level = 0;
+		} else {
+			$parameter[8]	= explode('|', $parameter[8]);
+			$amenu_level	= intval($parameter[8][0]);
+			if(!empty($parameter[8][1]) && ($parameter[8][1] = trim($parameter[8][1]))) { // articlemenu_list_image_size
+				$parameter[8][1] = explode('x', $parameter[8][1]);
+				$amenu_options['width']		= intval($parameter[8][1][0]); // width
+				$amenu_options['height']	= empty($parameter[8][1][1]) ? 0 : intval($parameter[8][1][1]); // height
+				$amenu_options['crop']		= empty($parameter[8][1][2]) ? 0 : 1; // crop
+				$amenu_options['enable']	= true;
+				$amenu_options['image']		= true;
+			}
+			if(!empty($parameter[8][2]) && ($parameter[8][2] = trim($parameter[8][2]))) { // articlemenu_use_text
+				$parameter[8][2]	= explode(':', $parameter[8][2]);
+				$parameter[8][2][0]	= strtolower(trim($parameter[8][2][0]));
+				if($parameter[8][2][0] == 'description' || $parameter[8][2][0] == 'menutitle' || $parameter[8][2][0] == 'teaser') { // default is description
+					$amenu_options['text'] = $parameter[8][2][0];
+					if(empty($parameter[8][2][1])) {
+						$amenu_options['textlength'] = 0;
+					} elseif($parameter[8][2][0] == 'teaser' && strtoupper($parameter[8][2][1]) == 'HTML') {
+						$amenu_options['textlength'] = 'HTML';
+					} else {
+						$amenu_options['textlength'] = intval($parameter[8][2][1]); // set max text length
+					}
+					$amenu_options['enable'] = true;
+				}
+			}
+			if($amenu_options['enable'] && !empty($parameter[8][3]) && ($parameter[8][3] = trim($parameter[8][3])) && strtolower($parameter[8][3]) == 'inside') { // articlemenu_position
+				$amenu_options['position'] = 'inside';
+			}
+			if($amenu_options['enable'] && !empty($parameter[8][4])) { // template
+				$amenu_options['template'] = str_replace(array('[%', '%]'), array('{', '}'), $parameter[8][4]);
+			}
+		}
 
-		$parameter		= array(	 0 => $menu_type, 		 1 => $start_id, 		 2 => $max_depth,
-									 3 => $path_class,		 4 => $active_class, 	 5 => $level_id_name,
-									 6 => $wrap_ul_div,		 7 => $wrap_link_text,	 8 => $unfold,
-									 9 => $ie_patch,		10 => $create_css,		11 => $amenu_level,
-									12 => array('articlemenu' => $articlemenu, 'level_id' => $start_id),
-									13 => $bootstrap
-							);
+		$parameter = array(
+			 0 => $menu_type,
+			 1 => $start_id,
+			 2 => $max_depth,
+			 3 => $path_class,
+			 4 => $active_class,
+			 5 => $level_id_name,
+			 6 => $wrap_ul_div,
+			 7 => $wrap_link_text,
+			 8 => $unfold,
+			 9 => $ie_patch,
+			10 => $create_css,
+			11 => $amenu_level,
+			12 => array(
+				'articlemenu'	=> $articlemenu,
+				'level_id'		=> $start_id
+			),
+			13 => $bootstrap
+		);
 
 		if($articlemenu) {
 			$parameter[12]['class_active']			= $active_class;
@@ -174,10 +234,10 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			$parameter[12]['class_first_item_tag']	= $GLOBALS['template_default']['classes']['navlist-asub_first'];
 			$parameter[12]['class_last_item_tag']	= $GLOBALS['template_default']['classes']['navlist-asub_last'];
 			$parameter[12]['return_format']			= 'array';
+			$parameter[12]['articlemenu_options']	= $amenu_options;
 		}
 
 	} else {
-
 		$menu_type		= $parameter[0];
 		$start_id		= $parameter[1];
 		$max_depth		= $parameter[2];
@@ -191,9 +251,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$create_css 	= $parameter[10];
 		$amenu_level	= $parameter[11];
 		$bootstrap		= $parameter[13];
-
 		$parent			= false;		// do not show parent link
-
 	}
 
 	$li				= '';
@@ -242,7 +300,6 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			}
 
 			$li .= $TAB.'	<li';
-
 
 			if($level_id_name) {
 				$li .= ' id="li_'.$level_id_name.'_'.$key.'"';
@@ -306,7 +363,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 		$parameter[12]['level_id']		= $start_id;
 		$parameter[12]['item_prefix']	= $TAB.$TAB.$TAB;
 
-		$ali = getArticleMenu( $parameter[12] );
+		$ali = getArticleMenu($parameter[12]);
 
 		if(count($ali) > 1) {
 
