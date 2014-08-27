@@ -1,7 +1,7 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.8 of June 11, 2014
-* for phpwcms --> v1.7.3+ (release date: 2014/05/29)
+* NLU_FF_AC_QD -> v1.9 of August 27, 2014
+* for phpwcms --> v1.7.4+ (release date: 2014/08/13)
 * #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENCE:		∀ |&#8704;| &forall;
@@ -16,7 +16,7 @@
 * #################################################################
 * ### README: github
 * https://github.com/jensensen/NLU_FF_AC_QD/blob/master/README.md
-* https://github.com/slackero/phpwcms/commit/e8b39f83ce103a63b54b9b660a6574cc1dbfbebe
+* https://github.com/slackero/phpwcms/commit/ded1da951d9a8e7e8dd6b3ba148b65def0c5f481
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
@@ -47,7 +47,7 @@ $acw_after = ")</span>";
 * ### !!!!!!!!!!! ### NO NEED TO EDIT BELOW ### !!!!!!!!!!!!!!! ###
 ******************************************************************/
 
-// original funtion buildCascadingMenu in /include/inc_front/front.func.inc.php
+// original function buildCascadingMenu in /include/inc_front/front.func.inc.php
 function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') {
 
 	/*
@@ -276,7 +276,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 	foreach($items as $key) {
 
 // -------------------------------------- WORKING -----------------
-		// overfucked massive changes
+		// thank you OG
 		// count number of articles in each category level
 		$sql = "SELECT COUNT(*) ";
 		$sql .= "FROM ".DB_PREPEND."phpwcms_article ";
@@ -307,7 +307,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			if($li_ul) {
 				$li_class = $GLOBALS['template_default']['classes']['navlist-sub_ul'];
 				if($bootstrap) {
-					$li_class	= trim('dropdown '.$li_class);
+					$li_class	= trim($GLOBALS['template_default']['classes']['navlist-bs-dropdown'].' '.$li_class);
 					$bs_toggle	= true;
 				}
 			} elseif(getHasSubStructureStatus($key)) {
@@ -319,9 +319,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 			$li_a_title	= html_specialchars($GLOBALS['content']['struct'][$key]['acat_name']);
 			$li_a_class	= ($active_class[1] && $key == $GLOBALS['aktion'][0]) ? $active_class[1] : ''; // set active link class
 			if($bs_toggle) {
-				$li_a_class		= trim('dropdown-toggle '.$li_a_class);
-				$bs_data_toggle = ' data-toggle="dropdown"';
-				$bs_caret		= ' <b class="caret"></b>';
+				$li_a_class		= trim($GLOBALS['template_default']['classes']['navlist-bs-dropdown-toggle'].' '.$li_a_class);
+				$bs_data_toggle = ' '.$GLOBALS['template_default']['attributes']['navlist-bs-dropdown-data'];
+				$bs_caret		= $GLOBALS['template_default']['attributes']['navlist-bs-dropdown-caret'];
 			} else {
 				$bs_data_toggle = '';
 				$bs_caret		= '';
@@ -353,7 +353,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 //			$li .= '>' . $li_a . '</a>';
 			$li .= '>' . $li_a . $GLOBALS['acw_before'] . $how_many_articles . $GLOBALS['acw_after'] . '</a>'; // jensensen
 
-			$li .= $li_ul.'</li>'.LF; // remove $li_ul from this line of code if $ie_patch is used
+			$li .= $li_ul.'</li>'.LF;
 
 	}
 	

@@ -1,5 +1,5 @@
 #NLU_FF_AC_QD#
-v1.8
+v1.9
 
 ##Description:##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,7 +26,7 @@ and:
 ==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
 ==> https://github.com/slackero/phpwcms/issues/13
 
-##New in v1.8##
+##New in v1.9##
 The original NAV_LIST_UL has been changed by OG.
 
 ```
@@ -36,7 +36,7 @@ The original NAV_LIST_UL has been changed by OG.
 So this script needs an update:
 
 * ==> http://forum.phpwcms.org/viewtopic.php?f=1&t=24328
-* ==> https://github.com/slackero/phpwcms/commit/e8b39f83ce103a63b54b9b660a6574cc1dbfbebe
+* ==> https://github.com/slackero/phpwcms/commit/ded1da951d9a8e7e8dd6b3ba148b65def0c5f481
 
 ###Quick start###
 Clone the repo: `https://github.com/jensensen/NLU_FF_AC_QD.git`.
