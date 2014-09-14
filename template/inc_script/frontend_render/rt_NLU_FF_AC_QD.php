@@ -1,18 +1,21 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9 of August 27, 2014
+* NLU_FF_AC_QD -> v1.9.1 of August 27, 2014
 * for phpwcms --> v1.7.4+ (release date: 2014/08/13)
 * #################################################################
+* @AUTHOR [virt.]:	Jensensen, INSPIRED by 
+* @AUTHOR [real]:	Knut Heermann aka flip-flop
+* @AUTHOR [real]:	FUNCTION by Oliver Georgi
+* #################################################################
+* @copyright Copyright (c) 2008–2014 jensensen (jbr/LH/DE)
+* #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
-* LICENCE:		∀ |&#8704;| &forall;
+* LICENSE:		∀ |&#8704;| &forall;
+* LICENSE:		http://opensource.org/licenses/GPL-2.0 GNU GPL-2
 * #################################################################
 * SUMMARY:
 * Works like NAV_LIST_UL but displays the number of articles
 * --> of each site level. Example ==> Products (17)
-* #################################################################
-* AUTHOR [virt.]:	Jensensen, INSPIRED by 
-*		 [real]:	Knut Heermann aka flip-flop
-*		 [real]:	FUNCTION by Oliver Georgi
 * #################################################################
 * ### README: github
 * https://github.com/jensensen/NLU_FF_AC_QD/blob/master/README.md
@@ -20,11 +23,10 @@
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
+* NAV_LIST_UL basics: http://forum.phpwcms.org/viewtopic.php?t=12165
 * ### README: Wiki
 * http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
 * http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
-* ###
-* NAV_LIST_UL basics: http://forum.phpwcms.org/viewtopic.php?t=12165
 * #################################################################
 * TAG:			{NLU_FF_AC_QD:F,0....}
 *				Use it in your templates, CPs or elsewhere.
