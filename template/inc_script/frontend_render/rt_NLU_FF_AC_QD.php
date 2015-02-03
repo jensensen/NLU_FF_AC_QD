@@ -7,7 +7,7 @@
 * @AUTHOR [real]:	Knut Heermann aka flip-flop
 * @AUTHOR [real]:	FUNCTION by Oliver Georgi
 * #################################################################
-* @copyright Copyright (c) 2008–2014 jensensen (jbr/LH/DE)
+* @copyright Copyright (c) 2008–2015 jensensen (jbr/LH/DE)
 * #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENSE:		∀ |&#8704;| &forall;
