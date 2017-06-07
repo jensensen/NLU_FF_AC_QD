@@ -1,6 +1,6 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.1 of August 27, 2014
+* NLU_FF_AC_QD -> v1.9.2 of June 7, 2017
 * for phpwcms --> v1.7.4+ (release date: 2014/08/13)
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
@@ -471,6 +471,6 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 }
 
 if(!empty($content["all"]) && !(strpos($content["all"],'{NLU_FF_AC_QD:')===false)) {
-	$content["all"] = preg_replace('/\{NLU_FF_AC_QD:(.*?)\}/e', 'buildCascMenuCountArticles("$1");', $content["all"]);  
+	$content["all"] = preg_replace_callback('/\{NLU_FF_AC_QD:(.*?)\}/', 'buildCascMenuCountArticles', $content["all"]);  
 }
 ?>

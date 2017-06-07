@@ -26,8 +26,9 @@ and:
 ==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
 ==> https://github.com/slackero/phpwcms/issues/13
 
-##New in v1.9##
+##New in v1.9.2##
 The original NAV_LIST_UL has been changed by OG.
+Now works well with PHP 5.6 and 7.
 
 ```
 {NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
@@ -63,7 +64,7 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2015 jensensen
+Copyright 2008–2017 jensensen
 
 This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is
 licensed under the GNU General Public License, Version 2 (the "License");
