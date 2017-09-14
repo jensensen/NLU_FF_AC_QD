@@ -1,9 +1,9 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.3 of September 15, 2017
+* NLU_FF_AC_QD -> v1.9.4 of September 15, 2017
 * for versions of phpwcms (release date: 2017/09/14)
-* branch master --> 1.8.9 r_547
-* branch dev 	--> 1.9.0-beta.8 r_549
+* branch master --> 1.8.9 r_547 https://github.com/slackero/phpwcms/commit/520ae3ebb55693060ae5091049759f7b9e4d71e9
+* branch dev 	--> 1.9.0-beta.8 r_549 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
 * backward compatibility: works also with older versions of phpwcms
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
