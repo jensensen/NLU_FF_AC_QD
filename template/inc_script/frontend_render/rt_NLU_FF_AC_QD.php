@@ -26,7 +26,7 @@
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
-* C basics: http://forum.phpwcms.org/viewtopic.php?t=12165
+* basics: http://forum.phpwcms.org/viewtopic.php?t=12165
 * ### README: Wiki
 * http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
 * http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
