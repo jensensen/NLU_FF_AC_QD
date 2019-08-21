@@ -1,5 +1,5 @@
 #NLU_FF_AC_QD#
-v1.9
+v1.9.5
 
 ##Description:##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,18 +26,16 @@ and:
 ==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
 ==> https://github.com/slackero/phpwcms/issues/13
 
-##New in v1.9.2##
-The original NAV_LIST_UL has been changed by OG.
-Now works well with PHP 5.6 and 7.
+##New in v1.9.5##
+Works well with almost all modern versions of phpwcms and PHP 7.x
 
 ```
+<nav class="collapse navbar-collapse" role="navigation">
+{NLU_FF_AC_QD:PBA,0,2,active|nav nav-pills,active}
+</nav>
 {NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
 {NAV_LIST_UL:BA,0,,,active,,,,0|100x100x1|teaser:10|outside|<div class="dropdown-menu">[IMAGE]<img src="[%IMAGE%]" alt="[%IMAGE_NAME%]" class="dropdown-image" />[/IMAGE][TEXT]<div class="dropdown-text">[%TEXT%]</div>[/TEXT]</div>}
 ```
-So this script needs an update:
-
-* ==> http://forum.phpwcms.org/viewtopic.php?f=1&t=24328
-* ==> https://github.com/slackero/phpwcms/commit/ded1da951d9a8e7e8dd6b3ba148b65def0c5f481
 
 ###Quick start###
 Clone the repo: `https://github.com/jensensen/NLU_FF_AC_QD.git`.
@@ -64,7 +62,7 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2017 jensensen
+Copyright 2008–2019 jensensen
 
 This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is
 licensed under the GNU General Public License, Version 2 (the "License");

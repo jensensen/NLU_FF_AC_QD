@@ -1,16 +1,17 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.4 of September 15, 2017
+* NLU_FF_AC_QD -> v1.9.5 of August 21, 2019
 * for versions of phpwcms (release date: 2017/09/14)
-* branch master --> 1.8.9 r_547 https://github.com/slackero/phpwcms/commit/520ae3ebb55693060ae5091049759f7b9e4d71e9
-* branch dev 	--> 1.9.0-beta.8 r_549 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
-* backward compatibility: works also with older versions of phpwcms
+* branch master	--> 1.9.0-rc.1 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
+* https://github.com/slackero/phpwcms/releases/tag/phpwcms-1.9.0-rc.1
+* branch v1.9-php7-dev	--> 1.9.0-beta.8 r_549 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
+* backward compatibility: needs PHP 7.x
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
 * @AUTHOR [real]:	Knut Heermann aka flip-flop
 * @AUTHOR [real]:	FUNCTION by Oliver Georgi
 * #################################################################
-* @copyright Copyright (c) 2008–2017 jensensen (jbr/LH/DE)
+* @copyright Copyright (c) 2008–2019 jensensen (jbr/LH/DE)
 * #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENSE:		∀ |&#8704;| &forall;
@@ -52,7 +53,7 @@ $acw_after = ")</span>";
 * ### !!!!!!!!!!! ### NO NEED TO EDIT BELOW ### !!!!!!!!!!!!!!! ###
 ******************************************************************/
 
-// original function buildCascadingMenu in /include/inc_front/front.func.inc.php
+// based on original function buildCascadingMenu in /include/inc_front/front.func.inc.php
 function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') {
     /*
         @string $parameter:
@@ -69,9 +70,12 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
                 articlemenu_position (inside|outside)|_
                 <custom>[TEXT]{TEXT}[/TEXT][IMAGE]<img src="{IMAGE}" alt="{IMAGE_NAME}">[/IMAGE]</custom>
     */
+
     if($param === 'string') {
+
         $parameter      = explode(',', is_array($parameter) && isset($parameter[1]) ? $parameter[1] : $parameter);
         $menu_type      = empty($parameter[0]) ? '' : strtoupper(trim($parameter[0]));
+
         $unfold         = 'all';
         $ie_patch       = false; // unused at the moment
         $create_css     = false;
@@ -80,6 +84,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         $bootstrap      = false; // bootstrap dropdown style
         $onepage        = IS_ONEPAGE_TEMPLATE; // render menu links as id anchor <a href=#alias>
         $onepage_every  = false; // ToDo!
+
         /**
          * P = Show parent level
          * B = Bootstrap compatible rendering
@@ -89,33 +94,42 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
          * VCSS = Sample vertical CSS based menu
          **/
         switch($menu_type) {
+
             case 'B':       $bootstrap      = true;
                             break;
+
             case 'BA':      $bootstrap      = true;
             case 'A':       $articlemenu    = true;
                             break;
+
             case 'PBA':     $bootstrap      = true;
             case 'PA':      $articlemenu    = true;
             case 'P':       $parent         = true;
                             break;
+
             case 'PB':      $parent         = true;
                             $bootstrap      = true;
                             break;
+
                             // vertical, active path unfolded
             case 'FPA':     $articlemenu    = true;
             case 'FP':      $parent         = true;
             case 'F':       $unfold         = 'active_path';
                             break;
+
             case 'FA':      $articlemenu    = true;
                             $unfold         = 'active_path';
                             break;
+
             case 'HCSSP':   $parent     = true;
             case 'HCSS':    $create_css = true;
                             break;
+
             case 'VCSSP':   $parent     = true;
             case 'VCSS':    $create_css = true;
                             break;
         }
+
         $start_id       = empty($parameter[1]) ? 0  : intval($parameter[1]);
         $max_depth      = empty($parameter[2]) ? 0  : intval($parameter[2]);
         $path_class     = empty($parameter[3]) ? '' : trim($parameter[3]);
@@ -192,6 +206,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
                 $amenu_options['template'] = str_replace(array('[%', '%]'), array('{', '}'), $parameter[8][4]);
             }
         }
+
         $parameter = array(
              0 => $menu_type,
              1 => $start_id,
@@ -213,6 +228,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             14 => $onepage,
             15 => $onepage_every
         );
+
         if($articlemenu) {
             $parameter[12]['class_active']          = $active_class;
             $parameter[12]['wrap_title_prefix']     = $wrap_link_text[0];
@@ -229,7 +245,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             $parameter[12]['return_format']         = 'array';
             $parameter[12]['articlemenu_options']   = $amenu_options;
         }
+
     } else {
+
         $menu_type      = $parameter[0];
         $start_id       = $parameter[1];
         $max_depth      = $parameter[2];
@@ -246,7 +264,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         $onepage        = $parameter[14];
         $onepage_every  = $parameter[15];
         $parent         = false; // do not show parent link
+
     }
+
     $li             = '';
     $ali            = '';
     $ul             = '';
@@ -256,12 +276,16 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
     $x              = 0;
     $items          = array();
     $last_item      = 0;
+
     foreach($GLOBALS['content']['struct'] as $key => $value) {
+
         if( _getStructureLevelDisplayStatus($key, $start_id) ) {
             $items[$key] = $key;
             $last_item++;
         }
+
     }
+
     foreach($items as $key) {
 // -------------------------------------- WORKING -----------------
         // thank you OG
@@ -278,12 +302,15 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         $li_ul      = '';
         $li_ie      = '';
         $bs_toggle  = false;
+
         if($max_depth && ($unfold == 'all' || ($unfold == 'active_path' && isset($GLOBALS['LEVEL_KEY'][$key]))) ) {
             $parameter[1]   = $key;
 //          $li_ul          = buildCascadingMenu($parameter, $counter+1, 'param_is_array');
             $li_ul	    = buildCascMenuCountArticles($parameter, $counter+1, 'param_is_array'); // jensensen
         }
+
         $li .= $TAB.'   <li';
+
         if($level_id_name) {
             $li .= ' id="li_'.$level_id_name.'_'.$key.'"';
         }
@@ -298,8 +325,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         } else {
             $li_class = $GLOBALS['template_default']['classes']['navlist-sub_no'];
         }
+
         $li_a_title = html_specialchars($GLOBALS['content']['struct'][$key]['acat_name']);
-        $li_a_class = $GLOBALS['template_default']['attributes']['navlist-link-class'];
+        $li_a_class = $GLOBALS['template_default']['classes']['navlist-link-class'];
         if($active_class[1] && $key == $GLOBALS['aktion'][0]) {
             $li_a_class = trim($li_a_class . ' ' . $active_class[1]); // set active link class
         }
@@ -316,6 +344,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         }
         $li_a  = get_level_ahref($key, $li_a_class.' title="'.$li_a_title.'"'.$bs_data_toggle);
         $li_a .= $wrap_link_text[0] . $li_a_title . $bs_caret . $wrap_link_text[1];
+
         if($path_class[0] && isset($GLOBALS['LEVEL_KEY'][$key])) {
             $li_class = trim($li_class.' '.$path_class[0]);
         }
@@ -325,7 +354,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         if($x === 0) {
             $li_class .= ' '.$GLOBALS['template_default']['classes']['navlist-sub_first'];
         }
+
         $x++;
+
         if($x === $last_item) {
             $li_class .= ' '.$GLOBALS['template_default']['classes']['navlist-sub_last'];
         }
@@ -334,22 +365,35 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         }
 //        $li .= '>' . $li_a . '</a>';
 	$li .= '>' . $li_a . $GLOBALS['acw_before'] . $how_many_articles . $GLOBALS['acw_after'] . '</a>'; // jensensen
+
         $li .= $li_ul.'</li>'.LF;
+
     }
+
     // show article menu
     if($parameter[12]['articlemenu'] && $amenu_level <= $counter) {
+
         $parameter[12]['level_id']      = $start_id;
         $parameter[12]['item_prefix']   = $TAB.$TAB.$TAB;
+
         $ali = getArticleMenu($parameter[12]);
+
         if(count($ali) > 1) {
+
             $li .= implode(LF, $ali) . LF;
             $ali = $TAB;
+
         } else {
+
             $ali = '';
+
         }
+
     }
+
     // also check if $parent
     if($li || ($parent && isset($GLOBALS['content']['struct'][$start_id]))) {
+
         switch($wrap_ul_div) {
             case 1:     $ul = LF.$TAB.'<div>';
                         $close_wrap_ul = '</div>'.LF.$TAB;
@@ -367,6 +411,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         if($level_id_name) {
             $ul .= ' id="'.$level_id_name.'_'.$start_id.'"';
         }
+
         $ul_class = empty($path_class[$counter+1]) ? '' : $path_class[$counter+1];
         if(isset($GLOBALS['LEVEL_KEY'][$start_id]) && $counter && isset($path_class[0])) {
             $ul_class .= ' ' . $path_class[0];
@@ -379,7 +424,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             $ul .= ' class="' . $ul_class . '"';
         }
         $ul .= '>'.LF;
+
         if($parent && isset($GLOBALS['content']['struct'][$start_id])) {
+
             $ul .= LF;
             $ul .= $TAB.'   <li';
             if($level_id_name) {
@@ -390,35 +437,51 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
                 $li_class = trim($li_class.' '.$active_class[0]);
             }
             $ul .= ' class="'.trim($li_class.' '.$GLOBALS['content']['struct'][$start_id]['acat_class']).'">';
+
             $link_text  = html_specialchars($GLOBALS['content']['struct'][$start_id]['acat_name']);
             $link_class = ($active_class[1] && $start_id == $GLOBALS['aktion'][0]) ? ' class="'.$active_class[1].'"' : ''; // set active link class
+
             $ul .= get_level_ahref($start_id, $link_class.' title="'.$link_text.'"');
             $ul .= $wrap_link_text[0] . $link_text . $wrap_link_text[1];
             $ul .= '</a></li>'.LF;
+
         }
+
         $ul .= $li;
         $ul .= $TAB . $ali . '</ul>' . LF . $TAB . $close_wrap_ul;
+
         if($create_css && empty($GLOBALS['block']['custom_htmlhead'][$menu_type][$counter])) {
+
             if($counter) {
+
                 $tmp_css  = '    .'.$_menu_type.'_menu ul li:hover '.str_repeat('ul ', $counter) .'ul { display: none; }'.LF;
                 $tmp_css .= '    .'.$_menu_type.'_menu ul '.str_repeat('ul ', $counter) .'li:hover ul { display: block; }';
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][$counter] = $tmp_css;
+
             } else {  //if($counter == 0) {
+
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][-9]  = LF.'  <style type="text/css">'.LF.SCRIPT_CDATA_START;
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][-8]  = '    @import url("'.TEMPLATE_PATH.'inc_css/specific/nav_list_ul_'.$_menu_type.'.css");';
+
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][-5]  = '    .'.$_menu_type.'_menu ul ul { display: none; }';
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][-4]  = '    .'.$_menu_type.'_menu ul li:hover ul { display: block; }';
+
                 ksort($GLOBALS['block']['custom_htmlhead'][$menu_type]);
                 $GLOBALS['block']['custom_htmlhead'][$menu_type][]   = SCRIPT_CDATA_END.LF.'  </style>';
                 $GLOBALS['block']['custom_htmlhead'][$menu_type]   = implode(LF, $GLOBALS['block']['custom_htmlhead'][$menu_type]);
+
                 $ul = '<div class="'.$_menu_type.'_menu">'.$ul.'</div>';
+
             }
+
         }
+
     }
+
     return $ul;
 }
 
 if(!empty($content["all"]) && !(strpos($content["all"],'{NLU_FF_AC_QD:')===false)) {
 	$content["all"] = preg_replace_callback('/\{NLU_FF_AC_QD:(.*?)\}/', 'buildCascMenuCountArticles', $content["all"]);  
 }
-?>
+
