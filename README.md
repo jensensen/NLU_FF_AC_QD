@@ -1,7 +1,7 @@
-#NLU_FF_AC_QD#
+# NLU_FF_AC_QD #
 v1.9.5
 
-##Description:##
+## Description: ##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
 
 This is the quick and dirty solution! This is the original **NAV_LIST_UL** of *flip-flop* that was incorporated by OG and now has been extended with --> easily add the number of articles within a certain site structure level.
@@ -10,7 +10,7 @@ The script works exactly like the original **NAV_LIST_UL**, because it's based o
 
 **Basics** to read --> http://forum.phpwcms.org/viewtopic.php?t=12165
 
-####For those who are interested why I chose this name:####
+#### For those who are interested why I chose this name: ####
 * NLU = NAV_LIST_UL
 * FF = flip-flop
 * AC = article count
@@ -26,7 +26,7 @@ and:
 ==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
 ==> https://github.com/slackero/phpwcms/issues/13
 
-##New in v1.9.5##
+## New in v1.9.5 ##
 Works well with almost all modern versions of phpwcms and PHP 7.x
 
 ```
@@ -37,10 +37,10 @@ Works well with almost all modern versions of phpwcms and PHP 7.x
 {NAV_LIST_UL:BA,0,,,active,,,,0|100x100x1|teaser:10|outside|<div class="dropdown-menu">[IMAGE]<img src="[%IMAGE%]" alt="[%IMAGE_NAME%]" class="dropdown-image" />[/IMAGE][TEXT]<div class="dropdown-text">[%TEXT%]</div>[/TEXT]</div>}
 ```
 
-###Quick start###
+### Quick start ###
 Clone the repo: `https://github.com/jensensen/NLU_FF_AC_QD.git`.
 
-###Bug tracker###
+### Bug tracker ###
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
 Report [issue](https://github.com/jensensen/NLU_FF_AC_QD/issues).
@@ -86,3 +86,4 @@ along with this program; if not, write to the
     Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA.
+
