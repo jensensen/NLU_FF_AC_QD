@@ -8,7 +8,7 @@ This is the quick and dirty solution! This is the original **NAV_LIST_UL** of *f
 
 The script works exactly like the original **NAV_LIST_UL**, because it's based on the same function.
 
-**Basics** to read --> http://forum.phpwcms.org/viewtopic.php?t=12165
+**Basics** to read --> https://forum.phpwcms.org/viewtopic.php?t=12165
 
 #### For those who are interested why I chose this name: ####
 * NLU = NAV_LIST_UL
@@ -18,12 +18,12 @@ The script works exactly like the original **NAV_LIST_UL**, because it's based o
 
 You can use it as RT = replacement tag  with the same prominent parameters and features as usual, but instead NAV_LIST_UL just type: NLU_FF_AC_QD... Read also <http://phpwcms.org> and Knut's (aka flip-flop's) [HowTo Wiki]:
 
-* ==> http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
-* ==> http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
+* ==> https://wiki.phpwcms.org/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
+* ==> https://wiki.phpwcms.org/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
 
 and:
 
-==> _RTFM_: http://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also: 
+==> _RTFM_: https://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also:
 ==> https://github.com/slackero/phpwcms/issues/13
 
 ## New in v1.9.5 ##
@@ -48,15 +48,15 @@ Report [issue](https://github.com/jensensen/NLU_FF_AC_QD/issues).
 Share with us and me
 -------------
 
-Keep up to date on announcements and more by following **phpwcms** on Twitter [@phpwcms](http://twitter.com/phpwcms) or on [Facebook](https://www.facebook.com/pages/phpwcms/162275020999) and jensensen on [Facebook](https://www.facebook.com/jens.bruckner.98).
+Keep up to date on announcements and more by following **phpwcms** on Twitter [@phpwcms](https://twitter.com/phpwcms) or on [Facebook](https://www.facebook.com/pages/phpwcms/162275020999) and jensensen on [Facebook](https://www.facebook.com/jens.bruckner.98).
 
 
 Author
 ------
 
 ### jensensen ###
-* <http://forum.phpwcms.org/viewtopic.php?f=8&t=17891>
-* <http://github.com/jensensen/>
+* <https://forum.phpwcms.org/viewtopic.php?f=8&t=17891>
+* <https://github.com/jensensen/>
 * <https://www.facebook.com/jens.bruckner.98>
 
 Copyright and license
@@ -69,7 +69,7 @@ licensed under the GNU General Public License, Version 2 (the "License");
 you may not use this work except in compliance with the License.
 You may obtain a copy of the License in the LICENSE file, or at:
 
-   <http://opensource.org/licenses/GPL-2.0>
+   <https://opensource.org/licenses/GPL-2.0>
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
