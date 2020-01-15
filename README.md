@@ -62,7 +62,7 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2019 jensensen
+Copyright 2008–2020 jensensen
 
 This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is
 licensed under the GNU General Public License, Version 2 (the "License");
