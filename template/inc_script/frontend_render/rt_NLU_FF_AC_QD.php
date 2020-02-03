@@ -1,10 +1,14 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.5 of August 21, 2019
-* for versions of phpwcms (release date: 2017/09/14)
-* branch master	--> 1.9.0-rc.1 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
-* https://github.com/slackero/phpwcms/releases/tag/phpwcms-1.9.0-rc.1
-* branch v1.9-php7-dev	--> 1.9.0-beta.8 r_549 https://github.com/slackero/phpwcms/commit/634cb79e26bfea9620aeac68e58cb5ffb32f880d
+* NLU_FF_AC_QD -> v1.9.6 of Febuary 03, 2020
+* for versions of phpwcms (release date: 2020/01/22)
+* branch --> master	--> 1.9.13 r_550  (release date: 2020/01/22)
+* https://github.com/slackero/phpwcms/commit/3e623547134ae4b5780ef95c858e987d023f74b2
+* https://github.com/slackero/phpwcms/commit/54a4e13131e80f7eb7f8a2b978d03a3347bd2e04
+*
+* branch --> v1.9-php7-dev --> 1.9.14 r_550 (release date: 2020/01/10)
+* https://github.com/slackero/phpwcms/commit/38d2e4073bc795faedd638bd6d57fbc2ee888c47
+* https://github.com/slackero/phpwcms/commit/5e01f1ed003a91de0c99380c971cd84bbf6367a3
 * backward compatibility: needs PHP 7.x
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
@@ -23,14 +27,11 @@
 * #################################################################
 * ### README: github
 * https://github.com/jensensen/NLU_FF_AC_QD/blob/master/README.md
-* https://github.com/slackero/phpwcms/commit/ded1da951d9a8e7e8dd6b3ba148b65def0c5f481
+* https://github.com/slackero/phpwcms/commit/3f3ba14e21ebe15ca53718f3b182de1bd11426ca
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
 * basics: http://forum.phpwcms.org/viewtopic.php?t=12165
-* ### README: Wiki
-* http://www.phpwcms-howto.de/wiki/doku.php/english/phpwcms_replacer_rts/frontend_render/nav_list_ul-article-count
-* http://www.phpwcms-howto.de/wiki/doku.php/deutsch/ersetzer_rts/frontend_render/nav_list_ul-article-count
 * #################################################################
 * TAG:			{NLU_FF_AC_QD:F,0....}
 *				Use it in your templates, CPs or elsewhere.
@@ -239,6 +240,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             $parameter[12]['item_tag']              = 'li';
             $parameter[12]['wrap_tag']              = '';
             $parameter[12]['attribute_wrap_tag']    = '';
+            $parameter[12]['class_item_link']       = $GLOBALS['template_default']['classes']['navlist-link-class'];
             $parameter[12]['class_item_tag']        = $GLOBALS['template_default']['classes']['navlist-asub_no'];
             $parameter[12]['class_first_item_tag']  = $GLOBALS['template_default']['classes']['navlist-asub_first'];
             $parameter[12]['class_last_item_tag']   = $GLOBALS['template_default']['classes']['navlist-asub_last'];
@@ -338,6 +340,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         } else {
             $bs_data_toggle = '';
             $bs_caret       = '';
+        }
+        if($bootstrap && $GLOBALS['template_default']['classes']['navlist-bs-link']) {
+            $li_a_class = trim($li_a_class.' '.$GLOBALS['template_default']['classes']['navlist-bs-link']);
         }
         if($li_a_class) {
             $li_a_class = ' class="'.$li_a_class.'"';
@@ -484,4 +489,3 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
 if(!empty($content["all"]) && !(strpos($content["all"],'{NLU_FF_AC_QD:')===false)) {
 	$content["all"] = preg_replace_callback('/\{NLU_FF_AC_QD:(.*?)\}/', 'buildCascMenuCountArticles', $content["all"]);  
 }
-
