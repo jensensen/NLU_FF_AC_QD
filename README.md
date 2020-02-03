@@ -1,5 +1,5 @@
 # NLU_FF_AC_QD #
-v1.9.5
+v1.9.6
 
 ## Description: ##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,7 +26,8 @@ and:
 ==> _RTFM_: https://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also:
 ==> https://github.com/slackero/phpwcms/issues/13
 
-## New in v1.9.5 ##
+## New in v1.9.6 ##
+Optimized for new phpwcms versions, that were released on January 2020.
 Works well with almost all modern versions of phpwcms and PHP 7.x
 
 ```
