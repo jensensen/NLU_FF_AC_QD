@@ -1,25 +1,22 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.6 of Febuary 03, 2020
-* for versions of phpwcms (release date: 2020/01/22)
-* branch --> master	--> 1.9.13 r_550  (release date: 2020/01/22)
-* https://github.com/slackero/phpwcms/commit/3e623547134ae4b5780ef95c858e987d023f74b2
-* https://github.com/slackero/phpwcms/commit/54a4e13131e80f7eb7f8a2b978d03a3347bd2e04
-*
-* branch --> v1.9-php7-dev --> 1.9.14 r_550 (release date: 2020/01/10)
-* https://github.com/slackero/phpwcms/commit/38d2e4073bc795faedd638bd6d57fbc2ee888c47
-* https://github.com/slackero/phpwcms/commit/5e01f1ed003a91de0c99380c971cd84bbf6367a3
+* NLU_FF_AC_QD -> v1.9.7 of May 31, 2021
+* for versions of phpwcms (release date: 2021/04/12)
+* branch --> master	--> 1.9.25 r_551  (release date: 2021/04/23)
+* branch --> v1.9-dev --> 1.9.25 r_551 (release date: 2021/04/23)
+* https://github.com/slackero/phpwcms/commit/233c06930a1de8a755ad75d0945b49484b1c7df1
+* https://github.com/slackero/phpwcms/commit/a66a5576bd2054bc9d195724bdba95fb44179d8f
 * backward compatibility: needs PHP 7.x
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
 * @AUTHOR [real]:	Knut Heermann aka flip-flop
 * @AUTHOR [real]:	FUNCTION by Oliver Georgi
 * #################################################################
-* @copyright Copyright (c) 2008–2020 jensensen (jbr/LH/DE)
+* @copyright Copyright (c) 2008–2021 jensensen (jbr/LH/DE)
 * #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENSE:		∀ |&#8704;| &forall;
-* LICENSE:		http://opensource.org/licenses/GPL-2.0 GNU GPL-2
+* LICENSE:		https://opensource.org/licenses/GPL-2.0 GNU GPL-2
 * #################################################################
 * SUMMARY:
 * Works like NAV_LIST_UL but displays the number of articles
@@ -27,7 +24,6 @@
 * #################################################################
 * ### README: github
 * https://github.com/jensensen/NLU_FF_AC_QD/blob/master/README.md
-* https://github.com/slackero/phpwcms/commit/3f3ba14e21ebe15ca53718f3b182de1bd11426ca
 * ### README: Forum
 * http://forum.phpwcms.org/viewtopic.php?p=100208#p100208
 * http://forum.phpwcms.org/viewtopic.php?f=8&t=17891
@@ -67,9 +63,9 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             wrap_ul_div(0 = off, 1 = <div>, 2 = <div id="">, 3 = <div class="navLevel-0">),
             wrap_link_text(<em>|</em>),
             articlemenu_start_level|articlemenu_list_image_size (WxHxCROP OR WxHxCROP)|_
-                articlemenu_use_text (take text from: description:MAXLEN OR menutitle:MAXLEN OR teaser:MAXLEN OR teaser:HTML)|_
-                articlemenu_position (inside|outside)|_
-                <custom>[TEXT]{TEXT}[/TEXT][IMAGE]<img src="{IMAGE}" alt="{IMAGE_NAME}">[/IMAGE]</custom>
+            articlemenu_use_text (take text from: description:MAXLEN OR menutitle:MAXLEN OR teaser:MAXLEN OR teaser:HTML)|_
+            articlemenu_position (inside|outside)|_
+            <custom>[TEXT]{TEXT}[/TEXT][IMAGE]<img src="{IMAGE}" alt="{IMAGE_NAME}">[/IMAGE]</custom>
     */
 
     if($param === 'string') {
@@ -85,11 +81,13 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         $bootstrap      = false; // bootstrap dropdown style
         $onepage        = IS_ONEPAGE_TEMPLATE; // render menu links as id anchor <a href=#alias>
         $onepage_every  = false; // ToDo!
+        $hide_first     = false;
 
         /**
          * P = Show parent level
          * B = Bootstrap compatible rendering
          * A = Articles as menu items
+         * AH = Articles as menu items, hide first (avoid double link because of parent structure level)
          * F = Folded, unfold only active level
          * HCSS = Sample horizontal CSS based menu
          * VCSS = Sample vertical CSS based menu
@@ -99,10 +97,12 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
             case 'B':       $bootstrap      = true;
                             break;
 
+            case 'BAH':     $hide_first     = true;
             case 'BA':      $bootstrap      = true;
             case 'A':       $articlemenu    = true;
                             break;
 
+            case 'PBAH':    $hide_first     = true;
             case 'PBA':     $bootstrap      = true;
             case 'PA':      $articlemenu    = true;
             case 'P':       $parent         = true;
@@ -113,11 +113,13 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
                             break;
 
                             // vertical, active path unfolded
+            case 'FPAH':    $hide_first     = true;
             case 'FPA':     $articlemenu    = true;
             case 'FP':      $parent         = true;
             case 'F':       $unfold         = 'active_path';
                             break;
 
+            case 'FAH':     $hide_first     = true;
             case 'FA':      $articlemenu    = true;
                             $unfold         = 'active_path';
                             break;
@@ -139,6 +141,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
         $wrap_ul_div    = empty($parameter[6]) ? 0  : intval($parameter[6]);
         $amenu_options  = array(
             'enable'        => false,
+            'hide_first'    => $hide_first,
             'image'         => false,
             'text'          => false,
             'width'         => 0,
@@ -274,7 +277,7 @@ function buildCascMenuCountArticles($parameter='', $counter=0, $param='string') 
     $ul             = '';
     $TAB            = str_repeat('  ', $counter);
     $_menu_type     = strtolower($menu_type);
-    $max_depth      = ($max_depth == 0 || $max_depth-1 > $counter) ? true : false;
+    $max_depth      = $max_depth == 0 || $max_depth - 1 > $counter;
     $x              = 0;
     $items          = array();
     $last_item      = 0;

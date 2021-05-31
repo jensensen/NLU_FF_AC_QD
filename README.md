@@ -1,5 +1,5 @@
 # NLU_FF_AC_QD #
-v1.9.6
+v1.9.7
 
 ## Description: ##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,15 +26,16 @@ and:
 ==> _RTFM_: https://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also:
 ==> https://github.com/slackero/phpwcms/issues/13
 
-## New in v1.9.6 ##
-Optimized for new phpwcms versions, that were released on January 2020.
-Works well with almost all modern versions of phpwcms and PHP 7.x
+## New in v1.9.7 ##
+New parameter has been added.
+Optimized for new phpwcms versions, that were released on April 2021.
+Works well with almost all modern versions of phpwcms and PHP 7.x and 8.x
 
 ```
 <nav class="collapse navbar-collapse" role="navigation">
 {NLU_FF_AC_QD:PBA,0,2,active|nav nav-pills,active}
 </nav>
-{NLU_FF_AC_QD:B,0,,active|nav navbar-nav,active}
+{NLU_FF_AC_QD:BAH,0,,active|nav navbar-nav,active}
 {NAV_LIST_UL:BA,0,,,active,,,,0|100x100x1|teaser:10|outside|<div class="dropdown-menu">[IMAGE]<img src="[%IMAGE%]" alt="[%IMAGE_NAME%]" class="dropdown-image" />[/IMAGE][TEXT]<div class="dropdown-text">[%TEXT%]</div>[/TEXT]</div>}
 ```
 
@@ -63,11 +64,10 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2020 jensensen
+Copyright 2008–2021 jensensen
 
-This work - **NLU_FF_AC_QD for phpwcms** by jensensen (jbr/LH/DE) - is
-licensed under the GNU General Public License, Version 2 (the "License");
-you may not use this work except in compliance with the License.
+Licensed under the GNU General Public License, Version 2 (the "License"); 
+you may not use this work except in compliance with the License. 
 You may obtain a copy of the License in the LICENSE file, or at:
 
    <https://opensource.org/licenses/GPL-2.0>
