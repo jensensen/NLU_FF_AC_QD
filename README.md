@@ -63,7 +63,7 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2021 jensensen
+Copyright 2008–2022 jensensen
 
 Licensed under the GNU General Public License, Version 2 (the "License"); 
 you may not use this work except in compliance with the License. 
