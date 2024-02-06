@@ -1,5 +1,5 @@
 # NLU_FF_AC_QD #
-v1.9.8
+v1.9.9
 
 ## Description: ##
 Whenever you need/want to display the number of articles of any site structure level next to the name of the category, the script does it.
@@ -26,7 +26,7 @@ and:
 ==> _RTFM_: https://forum.phpwcms.org/viewtopic.php?f=8&t=17891 and read also:
 ==> https://github.com/slackero/phpwcms/issues/13
 
-## New in v1.9.8 ##
+## New in v1.9.9 ##
 Optimized for new phpwcms versions, that were released on Febuary 2022.
 Works well with almost all modern versions of phpwcms and PHP 7.x and 8.x
 
@@ -49,10 +49,13 @@ Report [issue](https://github.com/jensensen/NLU_FF_AC_QD/issues).
 Share with us and me
 -------------
 
-Keep up to date on announcements and more by following **phpwcms** on Twitter [@phpwcms](https://twitter.com/phpwcms) or on [Facebook](https://www.facebook.com/pages/phpwcms/162275020999) and jensensen on [Facebook](https://www.facebook.com/jens.bruckner.98).
+phpwcms is no longer active on social media. 
+Please use the [phpwcms support forum](https://forum.phpwcms.org) 
+or [Github](https://github.com/slackero/phpwcms) to share your thoughts.
+Keep up to date on announcements and more by following the creator.
 
 
-Author
+Creator
 ------
 
 ### jensensen ###
@@ -63,10 +66,10 @@ Author
 Copyright and license
 ---------------------
 
-Copyright 2008–2022 jensensen
+Copyright 2008-2024 jensensen
 
-Licensed under the GNU General Public License, Version 2 (the "License"); 
-you may not use this work except in compliance with the License. 
+Licensed under the GNU General Public License, Version 2 (the "License");
+you may not use this work except in compliance with the License.
 You may obtain a copy of the License in the LICENSE file, or at:
 
    <https://opensource.org/licenses/GPL-2.0>
@@ -86,4 +89,3 @@ along with this program; if not, write to the
     Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA.
-

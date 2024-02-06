@@ -1,18 +1,17 @@
 <?php
 /******************************************************************
-* NLU_FF_AC_QD -> v1.9.8 of May 17, 2022
+* NLU_FF_AC_QD -> v1.9.9 of Feb 5, 2024
 * for versions of phpwcms
-* branch --> master	--> 1.9.33 r_553  (release date: 2022/02/23)
-* branch --> v1.9-dev --> 1.9.33_dev r_553 (release date: 2022/02/23)
-* https://github.com/slackero/phpwcms/commit/504272d6e7e8e05192e7b9ee36332d7872b0c8f6
-* https://github.com/slackero/phpwcms/commit/d5f2224d654565335fa27956b4ed30b7b44f1a55
-* backward compatibility: needs PHP 7.x
+* 1.9.33 (release date: 2022/02/23), backward compatibility: needs PHP 7.x
+* and latest
+* 1.10.x / needs PHP 8.x
+* https://github.com/slackero/phpwcms/commit/4ec6be9b2b92b3247995fb6fa5179ba12ff3bfdc
 * #################################################################
 * @AUTHOR [virt.]:	Jensensen, INSPIRED by 
 * @AUTHOR [real]:	Knut Heermann aka flip-flop
 * @AUTHOR [real]:	FUNCTION by Oliver Georgi
 * #################################################################
-* @copyright Copyright (c) 2008–2021 jensensen (jbr/LH/DE)
+* @copyright Copyright (c) 2008–2024 jensensen (jbr/LH/DE)
 * #################################################################
 * CONDITION:	FREE || leckmichandefurtoderscheissdiewandan;
 * LICENSE:		∀ |&#8704;| &forall;
